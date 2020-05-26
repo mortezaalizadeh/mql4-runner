@@ -1,0 +1,42 @@
+{
+    "basic_profile_settings": {
+        "profile": "default",
+        "market_watch": "_runMT4.set",
+        "server": "Eightcap-Demo",
+        "enable_ddf": false,
+        "enable_news": false,
+        "login": "",
+        "password": "",
+        "auto_configuration": "",
+        "data_server": ""
+    },
+    "expert_settings": {
+        "experts_enable": true,
+        "experts_dll_import": true,
+        "experts_exp_import": true,
+        "experts_trades": true
+    },
+    "strategy_tester_settings": {
+        "test_expert": "3barpla_EA",
+        "test_expert_parameters": "",
+        "test_symbols": ["AUDJPY", "EURCAD"],
+        "test_period": "H1",
+        "test_model": 0,
+        "test_spread": 5,
+        "test_optimization": false,
+        "test_data_enable": true,
+        "test_date_ranges": [
+            {
+                "from": "2020.01.01",
+                "to": "2020.05.15"
+            },
+            {
+                "from": "2020.01.01",
+                "to": "2020.02.1"
+            }
+        ],
+        "test_report": "3barResults",
+        "test_replace_report": false,
+        "test_shutdown_terminal": true
+    }
+}
