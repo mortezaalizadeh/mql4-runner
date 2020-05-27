@@ -19,3 +19,5 @@ class ConfigFileParser:
         
         with open(self.config_file_path) as f:
             return json.load(f)
+
+        print(f'Config file "{self.config_file_path}" successfully loaded')

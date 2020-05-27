@@ -18,14 +18,26 @@ def main(args):
     try:
         config  = ConfigFileParser(args.config_file_path).load_config()
 
-        for test_symbol in config['strategy_tester_settings']['test_symbols']:
-            for date_range in config['strategy_tester_settings']['test_date_ranges']:
-                config['strategy_tester_settings']['test_symbol'] = test_symbol
-                config['strategy_tester_settings']['test_date_range_from'] = date_range['from']
-                config['strategy_tester_settings']['test_date_range_to'] = date_range['to']
+        for test_expert in config['strategy_tester_settings']['test_experts']:
+            for test_symbol in config['strategy_tester_settings']['test_symbols']:
+                for date_range in config['strategy_tester_settings']['test_date_ranges']:
+                    for test_period in config['strategy_tester_settings']['test_periods']:
+                        config['strategy_tester_settings']['test_expert'] = test_expert
+                        config['strategy_tester_settings']['test_symbol'] = test_symbol
+                        config['strategy_tester_settings']['test_date_range_from'] = date_range['from']
+                        config['strategy_tester_settings']['test_date_range_to'] = date_range['to']
+                        config['strategy_tester_settings']['test_period'] = test_period
 
-                ini_config_file_parser = IniConfigWriter(config).create_config()
-                os.system(f'"{args.terminal_file_path}" {ini_config_file_parser}')
+                        ini_config_file_parser = IniConfigWriter(config).create_config()
+                        command_to_run = ""
+                        if args.portable:
+                            command_to_run = f'"{args.terminal_file_path}" /portable {ini_config_file_parser}'
+                        else:
+                            command_to_run = f'"{args.terminal_file_path}" {ini_config_file_parser}'
+
+                        print(f'Running command: "{command_to_run}"...')
+                        os.system(command_to_run)
+                        print(f'Finished running command: "{command_to_run}"')
     
     except Exception as exception:
         print(exception)
@@ -36,6 +48,7 @@ if __name__ == "__main__":
 
     parser.add_argument("terminal_file_path", help="Terminal file path")
     parser.add_argument("config_file_path", help="Config file path")
+    parser.add_argument("-p", "--portable", action="store_true", default=False, help="Run in portable mode")
 
     # Specify output of "--version"
     parser.add_argument(

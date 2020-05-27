@@ -17,10 +17,10 @@
         "experts_trades": true
     },
     "strategy_tester_settings": {
-        "test_expert": "3barpla_EA",
+        "test_experts": ["3barpla_EA"],
         "test_expert_parameters": "",
         "test_symbols": ["AUDJPY", "EURCAD"],
-        "test_period": "H1",
+        "test_periods": ["H1"],
         "test_model": 0,
         "test_spread": 5,
         "test_optimization": false,
